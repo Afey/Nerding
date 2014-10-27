@@ -9,6 +9,35 @@ blog.revolutionanalytics.com
 http://emacsbinw34.sourceforge.net
 	emacs w64!!
 heroku
+	sign in?
+	
+	I've currently got a working installation of the Enthought Python Distribution on my        machine that I don't want to necessarily disrupt, but I'd like to look at moving over to Anaconda from Continuum.
+I can easily install anaconda into the virtualenv directory I create, but I'm not sure how to tell that virtualenv to use the anaconda-version of Python. If I was telling my whole system to use it I can alter .bash_profile with something like export PATH="/DIRECTORIES/anaconda/bin:$PATH. Is there a way to do that within a virtualenv?
+
+python virtualenv anaconda
+
+I just tested the Anaconde 1.6 installer from http://continuum.io/downloads
+After downloading, I did:
+bash Anaconda-1.6.0-Linux-x86_64.sh
+If you take the defaults, you'll end up with a directory anaconda in your home directory, completely separate from your EPD or system Python installation.
+To activate the anaconda installation's default environment, do the following:
+
+source $HOME/anaconda/bin/activate ~/anaconda
+
+All Python commands will now come from the default Anaconda environment in $HOME/anaconda, which is itself a kind of a virtual environment. You can create sub-environments with e.g. conda create -n myenv1 ipython scipy, but this is not necessary.
+
+As a sidenote, you can also use pip (also in $HOME/anaconda/bin) to install PyPi packages into your anaconda default environment (it has pip installed by default) or any of the sub-environments (in which case you should first install pip into the sub-environment using conda install -n myenv1 pip).
+
+It is possible to install parts of anaconda manually into an existing virtualenv, but using their installer is by far the easiest way to test and use, without affecting any of your existing Python installations.
+
+Incidentally, version 1.6 broke this, and will produce a "No Environment Specified" error. This can be fixed by providing an environment after activate, including a general 'source $home/anaconda/bin/activate ~/anaconda' 
+  	 	
+Thanks for the comment! I just updated my answer. Coincidentally, I also discovered this during the making of a Python tutorial screencast a few days ago: youtube.com/… :) –  Charl Botha Jul 3 '13 at 8:34
+  	 	
+Using root on CentOS, will making a change to .bashrc break the system's Python which will break things like yum that rely on an older version of Python? –  KLDavenport Jan 16 at 21:19
+  	 	
+root's .bashrc only affects the root account, just like any other user's .bashrc affects only that user account. –  Charl Botha Jan 18 at 7:50
+
 recruiting metrics
 freelancers
 swirl on rstudio
@@ -17,3 +46,11 @@ g+ r en español comm
 cvxopt anaconda?
 r pietrobon posts to personal
 m vardi posts to personal
+	
+	
+	
+	
+	
+	
+	
+	
